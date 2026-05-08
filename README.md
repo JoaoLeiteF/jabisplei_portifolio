@@ -1,4 +1,4 @@
-# Gustavo Hikaru — Portfólio (site estático)
+# Gustavo Hikaru — Portfólio
 
 Site em HTML/CSS puro, pensado para hospedar no **GitHub** e publicar na **Vercel** (ou GitHub Pages) sem WordPress.
 
