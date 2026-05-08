@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Projetos — Gustavo Hikaru</title>
+  <meta name="description" content="Portfólio de projetos de edição de vídeo e motion design de Gustavo Hikaru." />
+  <link rel="icon" href="./media/cropped-Logo-Gustavo.jpg" type="image/jpeg" />
+  <style>
+    :root {
+      --bg: #030303;
+      --fg: #f0f0f0;
+      --muted: #888;
+      --accent: #fff;
+      --card: #0d0d0d;
+      --border: #1f1f1f;
+      --gold: #c8a96e;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--fg);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.25rem 2rem;
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 200;
+      background: rgba(3,3,3,0.9);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+      color: var(--fg);
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      font-size: 0.95rem;
+    }
+    .brand img {
+      width: 34px; height: 34px;
+      border-radius: 6px;
+      object-fit: cover;
+    }
+    nav {
+      display: flex;
+      gap: 2rem;
+      font-size: 0.875rem;
+      letter-spacing: 0.05em;
+    }
+    nav a {
+      color: var(--muted);
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: color 0.25s;
+      position: relative;
+    }
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -3px; left: 0; right: 0;
+      height: 1px;
+      background: var(--gold);
+      transform: scaleX(0);
+      transition: transform 0.3s ease;
+    }
+    nav a:hover { color: var(--fg); }
+    nav a:hover::after { transform: scaleX(1); }
+    nav a.active { color: var(--fg); }
+    nav a.active::after { transform: scaleX(1); }
+
+    /* ── PAGE HEADER ── */
+    .page-hero {
+      padding: 9rem 2rem 3.5rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .page-hero-eyebrow {
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1rem;
+    }
+    .page-hero h1 {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      margin-bottom: 0.75rem;
+    }
+    .page-hero p {
+      color: var(--muted);
+      font-size: 0.95rem;
+      max-width: 44ch;
+    }
+
+    /* ── GRID ── */
+    .projects-grid {
+      max-width: 1100px;
+      margin: 0 auto 6rem;
+      padding: 0 2rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.25rem;
+    }
+    @media (max-width: 480px) {
+      .projects-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ── CARD ── */
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+      cursor: pointer;
+      opacity: 0;
+      transform: translateY(40px);
+      transition:
+        transform 0.35s ease,
+        border-color 0.3s ease,
+        box-shadow 0.35s ease,
+        opacity 0.5s ease;
+    }
+    .card.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .card:hover {
+      transform: translateY(-6px) scale(1.015);
+      border-color: rgba(200,169,110,0.35);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.55);
+    }
+
+    .card-thumb {
+      position: relative;
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+      background: #000;
+    }
+    .card-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.55s ease, filter 0.4s ease;
+    }
+    .card:hover .card-thumb img {
+      transform: scale(1.07);
+      filter: brightness(0.7);
+    }
+
+    /* play icon overlay */
+    .card-play {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .card:hover .card-play { opacity: 1; }
+    .card-play svg {
+      width: 52px; height: 52px;
+      filter: drop-shadow(0 4px 12px rgba(0,0,0,0.6));
+    }
+
+    .card-body {
+      padding: 0.875rem 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid var(--border);
+    }
+    .card-title {
+      font-weight: 600;
+      font-size: 0.9rem;
+      letter-spacing: 0.01em;
+    }
+    .card-arrow {
+      color: var(--muted);
+      font-size: 0.8rem;
+      transition: color 0.25s, transform 0.25s;
+    }
+    .card:hover .card-arrow {
+      color: var(--gold);
+      transform: translateX(4px);
+    }
+
+    /* ── LIGHTBOX ── */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 500;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.35s ease;
+    }
+    .lightbox.open {
+      pointer-events: all;
+      opacity: 1;
+    }
+
+    .lb-backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.92);
+      cursor: pointer;
+      backdrop-filter: blur(6px);
+    }
+
+    .lb-panel {
+      position: relative;
+      width: 100%;
+      max-width: 900px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      transform: scale(0.93) translateY(20px);
+      transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      z-index: 1;
+    }
+    .lightbox.open .lb-panel {
+      transform: scale(1) translateY(0);
+    }
+
+    .lb-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 1.25rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .lb-title {
+      font-weight: 600;
+      font-size: 1rem;
+      letter-spacing: 0.01em;
+    }
+    .lb-close {
+      background: none;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      width: 32px; height: 32px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 1.1rem;
+      display: flex; align-items: center; justify-content: center;
+      transition: color 0.2s, border-color 0.2s;
+      line-height: 1;
+    }
+    .lb-close:hover { color: var(--fg); border-color: #555; }
+
+    .lb-embed {
+      position: relative;
+      aspect-ratio: 16 / 9;
+      background: #000;
+    }
+    .lb-embed iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    /* ── NAV ARROWS ── */
+    .lb-nav {
+      display: flex;
+      gap: 0.5rem;
+      padding: 0.875rem 1.25rem;
+      border-top: 1px solid var(--border);
+      justify-content: space-between;
+      align-items: center;
+    }
+    .lb-nav-info {
+      font-size: 0.8rem;
+      color: var(--muted);
+      letter-spacing: 0.04em;
+    }
+    .lb-nav-btns { display: flex; gap: 0.5rem; }
+    .lb-btn {
+      background: none;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      padding: 0.4rem 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 0.8rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .lb-btn:hover { color: var(--fg); border-color: #555; }
+    .lb-btn:disabled { opacity: 0.25; cursor: default; }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.8rem;
+      padding: 1.5rem;
+      border-top: 1px solid var(--border);
+      letter-spacing: 0.04em;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a href="./index.html" class="brand">
+      <img src="./media/cropped-Logo-Gustavo.jpg" width="34" height="34" alt="Gustavo Hikaru logo" />
+      Gustavo Hikaru
+    </a>
+    <nav>
+      <a href="./index.html">Sobre</a>
+      <a href="./projetos.html" class="active">Projetos</a>
+      <a href="https://www.linkedin.com/in/gustavohikaru/" rel="noopener noreferrer" target="_blank">LinkedIn</a>
+      <a href="mailto:gustavohikaruak@gmail.com">E-mail</a>
+    </nav>
+  </header>
+
+  <div class="page-hero">
+    <p class="page-hero-eyebrow">Portfólio</p>
+    <h1>Projetos</h1>
+    <p>Clique em qualquer card para assistir ao trabalho completo.</p>
+  </div>
+
+  <div class="projects-grid" id="projects-grid">
+
+    <div class="card" data-title="Alien: Earth" data-src="https://iframe.mediadelivery.net/embed/453117/855dad30-09a4-40ba-b9e9-c75ecc4b12b8?autoplay=true&loop=false&muted=false&preload=true&responsive=true" data-type="bunny">
+      <div class="card-thumb">
+        <img src="./media/Case-Alien-Earth-16-9.mp4_snapshot_00.02.437.jpg" alt="Alien: Earth" loading="lazy" />
+        <div class="card-play">
+          <svg viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="26" cy="26" r="25" fill="rgba(0,0,0,0.55)" stroke="rgba(255,255,255,0.5)" stroke-width="1.5"/>
+            <path d="M21 18L35 26L21 34V18Z" fill="white"/>
+          </svg>
+        </div>
+      </div>
+      <div class="card-body">
+        <span class="card-title">Alien: Earth</span>
+        <span class="card-arrow">→</span>
+      </div>
+    </div>
+
+    <div class="card" data-title="Fantastic Four" data-src="https://iframe.mediadelivery.net/embed/453117/2c6b3135-e0bf-41f2-ad4f-75d41dce995f?autoplay=true&loop=false&muted=false&preload=true&responsive=true" data-type="bunny">
+      <div class="card-thumb">
+        <img src="./media/Case-Quarteto-Fantastico-Full-Res-16-9.mp4_snapshot_00.07.365.jpg" alt="Fantastic Four" loading="lazy" />
+        <div class="card-play">
+          <svg viewBox="0 0 52 52" fill="none"><circle cx="26" cy="26" r="25" fill="rgba(0,0,0,0.55)" stroke="rgba(255,255,255,0.5)" stroke-width="1.5"/><path d="M21 18L35 26L21 34V18Z" fill="white"/></svg>
+        </div>
+      </div>
+      <div class="card-body">
+        <span class="card-title">Fantastic Four</span>
+        <span class="card-arrow">→</span>
+      </div>
+    </div>
+
+    <div class="card" data-title="Final de Ano VEX 2025" data-src="https://iframe.mediadelivery.net/embed/453117/beea13b1-7982-4f52-8111-c226cf8ec809?autoplay=true&loop=false&muted=false&preload=true&responsive=true" data-type="bunny">
+      <div class="card-thumb">
+        <img src="./media/Final-de-Ano-VEX-2025-v2.mp4_snapshot_00.22.541.jpg" alt="Final de Ano VEX 2025" loading="lazy" />
+        <div class="card-play">
+          <svg viewBox="0 0 52 52" fill="none"><circle cx="26" cy="26" r="25" fill="rgba(0,0,0,0.55)" stroke="rgba(255,255,255,0.5)" stroke-width="1.5"/><path d="M21 18L35 26L21 34V18Z" fill="white"/></svg>
+        </div>
+      </div>
+      <div class="card-body">
+        <span class="card-title">Final de Ano VEX 2025</span>
+        <span class="card-arrow">→</span>
+      </div>
+    </div>
+
+    <div class="card" data-title="Senna — Netflix" data-src="https://iframe.mediadelivery.net/embed/453117/ceef5eb7-2e5f-44a4-828a-a20f50ed3561?autoplay=true&loop=false&muted=false&preload=true&responsive=true" data-type="bunny">
+      <div class="card-thumb">
+        <img src="./media/Video-Campanha-Senna-v2-2560x1440.mp4_snapshot_00.08.341.jpg" alt="Senna Netflix" loading="lazy" />
+        <div class="card-play">
+          <svg viewBox="0 0 52 52" fill="none"><circle cx="26" cy="26" r="25" fill="rgba(0,0,0,0.55)" stroke="rgba(255,255,255,0.5)" stroke-width="1.5"/><path d="M21 18L35 26L21 34V18Z" fill="white"/></svg>
+        </div>
+      </div>
+      <div class="card-body">
+        <span class="card-title">Senna — Netflix</span>
+        <span class="card-arrow">→</span>
+      </div>
+    </div>
+
+    <div class="card" data-title="Curiosidades VEX" data-src="https://iframe.mediadelivery.net/embed/453117/8b9e3bf4-990e-4148-9659-41cb65aa6215?autoplay=true&loop=false&muted=false&preload=true&responsive=true" data-type="bunny">
+      <div class="card-thumb">
+        <img src="./media/Curiosidades-VEX-Thumbnail.jpg" alt="Curiosidades VEX" loading="lazy" />
+        <div class="card-play">
+          <svg viewBox="0 0 52 52" fill="none"><circle cx="26" cy="26" r="25" fill="rgba(0,0,0,0.55)" stroke="rgba(255,255,255,0.5)" stroke-width="1.5"/><path d="M21 18L35 26L21 34V18Z" fill="white"/></svg>
+        </div>
+      </div>
+      <div class="card-body">
+        <span class="card-title">Curiosidades VEX</span>
+        <span class="card-arrow">→</span>
+      </div>
+    </div>
+
+    <div class="card" data-title="Stranger Things" data-src="https://iframe.mediadelivery.net/embed/453117/99c2f61f-1de4-4549-b074-f3b5bf5e030b?autoplay=true&loop=false&muted=false&preload=true&responsive=true" data-type="bunny">
+      <div class="card-thumb">
+        <img src="./media/Case-Stranger-Things-Full-Res-16-9.mp4_snapshot_00.00.000.jpg" alt="Stranger Things" loading="lazy" />
+        <div class="card-play">
+          <svg viewBox="0 0 52 52" fill="none"><circle cx="26" cy="26" r="25" fill="rgba(0,0,0,0.55)" stroke="rgba(255,255,255,0.5)" stroke-width="1.5"/><path d="M21 18L35 26L21 34V18Z" fill="white"/></svg>
+        </div>
+      </div>
+      <div class="card-body">
+        <span class="card-title">Stranger Things</span>
+        <span class="card-arrow">→</span>
+      </div>
+    </div>
+
+    <div class="card" data-title="Map Video — Carnaval" data-src="https://iframe.mediadelivery.net/embed/453117/d433cbfa-640a-4ff9-b76a-66ce689cc8f9?autoplay=true&loop=false&muted=false&preload=true&responsive=true" data-type="bunny">
+      <div class="card-thumb">
+        <img src="./media/Video-Mapa-Carnaval.mp4_snapshot_00.00.000.jpg" alt="Map Video Carnaval" loading="lazy" />
+        <div class="card-play">
+          <svg viewBox="0 0 52 52" fill="none"><circle cx="26" cy="26" r="25" fill="rgba(0,0,0,0.55)" stroke="rgba(255,255,255,0.5)" stroke-width="1.5"/><path d="M21 18L35 26L21 34V18Z" fill="white"/></svg>
+        </div>
+      </div>
+      <div class="card-body">
+        <span class="card-title">Map Video — Carnaval</span>
+        <span class="card-arrow">→</span>
+      </div>
+    </div>
+
+    <div class="card" data-title="Lançamento Painel Mairiporã" data-src="https://iframe.mediadelivery.net/embed/453117/933c1e7f-9ab2-442a-8103-8784d813cf74?autoplay=true&loop=false&muted=false&preload=true&responsive=true" data-type="bunny">
+      <div class="card-thumb">
+        <img src="./media/Lancamento-Painel-Mairipora-Case.mp4_snapshot_00.01.500.jpg" alt="Lançamento Painel Mairiporã" loading="lazy" />
+        <div class="card-play">
+          <svg viewBox="0 0 52 52" fill="none"><circle cx="26" cy="26" r="25" fill="rgba(0,0,0,0.55)" stroke="rgba(255,255,255,0.5)" stroke-width="1.5"/><path d="M21 18L35 26L21 34V18Z" fill="white"/></svg>
+        </div>
+      </div>
+      <div class="card-body">
+        <span class="card-title">Lançamento Painel Mairiporã</span>
+        <span class="card-arrow">→</span>
+      </div>
+    </div>
+
+    <div class="card" data-title="Globo — Mania de Você" data-src="https://iframe.mediadelivery.net/embed/453117/bd682a08-71b7-4f78-85fc-19b8c90136e2?autoplay=true&loop=false&muted=false&preload=true&responsive=true" data-type="bunny">
+      <div class="card-thumb">
+        <img src="./media/00-Campanha-Crossmedia-VEX.00_00_04_22.Still001.jpg" alt="Globo Mania de Você" loading="lazy" />
+        <div class="card-play">
+          <svg viewBox="0 0 52 52" fill="none"><circle cx="26" cy="26" r="25" fill="rgba(0,0,0,0.55)" stroke="rgba(255,255,255,0.5)" stroke-width="1.5"/><path d="M21 18L35 26L21 34V18Z" fill="white"/></svg>
+        </div>
+      </div>
+      <div class="card-body">
+        <span class="card-title">Globo — Mania de Você</span>
+        <span class="card-arrow">→</span>
+      </div>
+    </div>
+
+    <div class="card" data-title="Fanta" data-src="https://iframe.mediadelivery.net/embed/453117/a961c235-faf3-4c7e-8404-f5a9128cfd71?autoplay=true&loop=false&muted=false&preload=true&responsive=true" data-type="bunny">
+      <div class="card-thumb">
+        <img src="./media/PT-BR-VEX-Fanta.mp4_snapshot_00.02.197.jpg" alt="Fanta" loading="lazy" />
+        <div class="card-play">
+          <svg viewBox="0 0 52 52" fill="none"><circle cx="26" cy="26" r="25" fill="rgba(0,0,0,0.55)" stroke="rgba(255,255,255,0.5)" stroke-width="1.5"/><path d="M21 18L35 26L21 34V18Z" fill="white"/></svg>
+        </div>
+      </div>
+      <div class="card-body">
+        <span class="card-title">Fanta</span>
+        <span class="card-arrow">→</span>
+      </div>
+    </div>
+
+    <div class="card" data-title="Cheetos 2025" data-src="https://iframe.mediadelivery.net/embed/453117/613e059b-0c15-411c-ae1f-8cac439ebfab?autoplay=true&loop=false&muted=false&preload=true&responsive=true" data-type="bunny">
+      <div class="card-thumb">
+        <img src="./media/Campanha-Summer-Cheetos-2560x1440.mp4_snapshot_00.18.201.jpg" alt="Cheetos 2025" loading="lazy" />
+        <div class="card-play">
+          <svg viewBox="0 0 52 52" fill="none"><circle cx="26" cy="26" r="25" fill="rgba(0,0,0,0.55)" stroke="rgba(255,255,255,0.5)" stroke-width="1.5"/><path d="M21 18L35 26L21 34V18Z" fill="white"/></svg>
+        </div>
+      </div>
+      <div class="card-body">
+        <span class="card-title">Cheetos 2025</span>
+        <span class="card-arrow">→</span>
+      </div>
+    </div>
+
+    <div class="card" data-title="Smurfs" data-src="https://iframe.mediadelivery.net/embed/453117/4aecafd3-d3ea-42b3-af4e-ea1f22d506e6?autoplay=true&loop=false&muted=false&preload=true&responsive=true" data-type="bunny">
+      <div class="card-thumb">
+        <img src="./media/Case-Smurfs-16-9.mp4_snapshot_00.03.747.jpg" alt="Smurfs" loading="lazy" />
+        <div class="card-play">
+          <svg viewBox="0 0 52 52" fill="none"><circle cx="26" cy="26" r="25" fill="rgba(0,0,0,0.55)" stroke="rgba(255,255,255,0.5)" stroke-width="1.5"/><path d="M21 18L35 26L21 34V18Z" fill="white"/></svg>
+        </div>
+      </div>
+      <div class="card-body">
+        <span class="card-title">Smurfs</span>
+        <span class="card-arrow">→</span>
+      </div>
+    </div>
+
+    <div class="card" data-title="Round 6" data-src="https://iframe.mediadelivery.net/embed/453117/c6bdd514-29ff-42d8-9a8e-a719e8bbbe60?autoplay=true&loop=false&muted=false&preload=true&responsive=true" data-type="bunny">
+      <div class="card-thumb">
+        <img src="./media/Campanha-Netflix-Round-6-S03.mp4_snapshot_00.27.866.jpg" alt="Round 6" loading="lazy" />
+        <div class="card-play">
+          <svg viewBox="0 0 52 52" fill="none"><circle cx="26" cy="26" r="25" fill="rgba(0,0,0,0.55)" stroke="rgba(255,255,255,0.5)" stroke-width="1.5"/><path d="M21 18L35 26L21 34V18Z" fill="white"/></svg>
+        </div>
+      </div>
+      <div class="card-body">
+        <span class="card-title">Round 6</span>
+        <span class="card-arrow">→</span>
+      </div>
+    </div>
+
+    <div class="card" data-title="LIVEX" data-src="https://iframe.mediadelivery.net/embed/453117/db6577bd-8c12-467c-90f4-7ad72a64c023?autoplay=true&loop=false&muted=false&preload=true&responsive=true" data-type="bunny">
+      <div class="card-thumb">
+        <img src="./media/LIVEX-Feed-Full-Quality.mp4_snapshot_00.06.960.jpg" alt="LIVEX" loading="lazy" />
+        <div class="card-play">
+          <svg viewBox="0 0 52 52" fill="none"><circle cx="26" cy="26" r="25" fill="rgba(0,0,0,0.55)" stroke="rgba(255,255,255,0.5)" stroke-width="1.5"/><path d="M21 18L35 26L21 34V18Z" fill="white"/></svg>
+        </div>
+      </div>
+      <div class="card-body">
+        <span class="card-title">LIVEX</span>
+        <span class="card-arrow">→</span>
+      </div>
+    </div>
+
+    <div class="card" data-title="Portal São Paulo" data-src="https://iframe.mediadelivery.net/embed/453117/6372f67a-aaa7-4434-bd37-b2911e552e56?autoplay=true&loop=false&muted=false&preload=true&responsive=true" data-type="bunny">
+      <div class="card-thumb">
+        <img src="./media/Case-Portal-Sao-Paulo-Modif.mp4_snapshot_00.02.171.jpg" alt="Portal São Paulo" loading="lazy" />
+        <div class="card-play">
+          <svg viewBox="0 0 52 52" fill="none"><circle cx="26" cy="26" r="25" fill="rgba(0,0,0,0.55)" stroke="rgba(255,255,255,0.5)" stroke-width="1.5"/><path d="M21 18L35 26L21 34V18Z" fill="white"/></svg>
+        </div>
+      </div>
+      <div class="card-body">
+        <span class="card-title">Portal São Paulo</span>
+        <span class="card-arrow">→</span>
+      </div>
+    </div>
+
+    <div class="card" data-title="3D Short Film — Exterminador" data-src="https://player.vimeo.com/video/715216060?autoplay=1&title=1&byline=1&portrait=0" data-type="vimeo">
+      <div class="card-thumb">
+        <img src="./media/Thumb-Exterminador.jpg" alt="Exterminador" loading="lazy" />
+        <div class="card-play">
+          <svg viewBox="0 0 52 52" fill="none"><circle cx="26" cy="26" r="25" fill="rgba(0,0,0,0.55)" stroke="rgba(255,255,255,0.5)" stroke-width="1.5"/><path d="M21 18L35 26L21 34V18Z" fill="white"/></svg>
+        </div>
+      </div>
+      <div class="card-body">
+        <span class="card-title">3D Short — Exterminador</span>
+        <span class="card-arrow">→</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Player de vídeo">
+    <div class="lb-backdrop" id="lb-backdrop"></div>
+    <div class="lb-panel">
+      <div class="lb-header">
+        <span class="lb-title" id="lb-title"></span>
+        <button class="lb-close" id="lb-close" aria-label="Fechar">&times;</button>
+      </div>
+      <div class="lb-embed">
+        <iframe id="lb-iframe" title="" src="" allow="autoplay; fullscreen; picture-in-picture; accelerometer; gyroscope; encrypted-media" allowfullscreen></iframe>
+      </div>
+      <div class="lb-nav">
+        <span class="lb-nav-info" id="lb-nav-info"></span>
+        <div class="lb-nav-btns">
+          <button class="lb-btn" id="lb-prev">← Anterior</button>
+          <button class="lb-btn" id="lb-next">Próximo →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>© Gustavo Hikaru — Editor de Vídeo Sênior &amp; Motion Designer</footer>
+
+  <script>
+    // ── STAGGERED SCROLL REVEAL ──
+    const cards = Array.from(document.querySelectorAll('.card'));
+    const cardObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const idx = cards.indexOf(entry.target);
+          const col = idx % 3;
+          entry.target.style.transitionDelay = `${col * 70}ms`;
+          entry.target.classList.add('visible');
+          cardObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    cards.forEach(c => cardObserver.observe(c));
+
+    // ── LIGHTBOX ──
+    const lightbox = document.getElementById('lightbox');
+    const lbIframe = document.getElementById('lb-iframe');
+    const lbTitle  = document.getElementById('lb-title');
+    const lbInfo   = document.getElementById('lb-nav-info');
+    const lbPrev   = document.getElementById('lb-prev');
+    const lbNext   = document.getElementById('lb-next');
+    let currentIdx = 0;
+
+    function openLightbox(idx) {
+      currentIdx = idx;
+      const card = cards[idx];
+      lbTitle.textContent = card.dataset.title;
+      lbIframe.src = card.dataset.src;
+      lbInfo.textContent = `${idx + 1} / ${cards.length}`;
+      lbPrev.disabled = idx === 0;
+      lbNext.disabled = idx === cards.length - 1;
+      lightbox.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      lightbox.classList.remove('open');
+      lbIframe.src = '';
+      document.body.style.overflow = '';
+    }
+
+    cards.forEach((card, idx) => {
+      card.addEventListener('click', () => openLightbox(idx));
+    });
+
+    document.getElementById('lb-close').addEventListener('click', closeLightbox);
+    document.getElementById('lb-backdrop').addEventListener('click', closeLightbox);
+
+    lbPrev.addEventListener('click', () => {
+      if (currentIdx > 0) openLightbox(currentIdx - 1);
+    });
+    lbNext.addEventListener('click', () => {
+      if (currentIdx < cards.length - 1) openLightbox(currentIdx + 1);
+    });
+
+    document.addEventListener('keydown', e => {
+      if (!lightbox.classList.contains('open')) return;
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowLeft' && currentIdx > 0) openLightbox(currentIdx - 1);
+      if (e.key === 'ArrowRight' && currentIdx < cards.length - 1) openLightbox(currentIdx + 1);
+    });
+  </script>
+</body>
+</html>
