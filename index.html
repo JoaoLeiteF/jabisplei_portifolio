@@ -84,86 +84,41 @@
     nav a.active { color: var(--fg); }
     nav a.active::after { transform: scaleX(1); }
 
-    /* ── HERO ── */
-    .hero {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 8rem 2rem 4rem;
-      position: relative;
-      overflow: hidden;
-    }
-    .hero-bg {
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(ellipse 70% 60% at 75% 40%, rgba(200,169,110,0.06) 0%, transparent 65%),
-        radial-gradient(ellipse 50% 50% at 20% 70%, rgba(255,255,255,0.02) 0%, transparent 60%);
-      pointer-events: none;
-    }
-    .hero-eyebrow {
-      font-size: 0.75rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 1.25rem;
+    /* ── INTRO ── */
+    .intro {
+      padding: 7rem 2rem 3rem;
+      max-width: 1100px;
+      margin: 0 auto;
       opacity: 0;
-      transform: translateY(20px);
-      animation: fadeUp 0.8s 0.2s forwards;
+      transform: translateY(18px);
+      animation: fadeUp 0.7s 0.15s forwards;
     }
-    .hero h1 {
-      font-size: clamp(2.8rem, 7vw, 6rem);
-      font-weight: 700;
-      line-height: 1.08;
-      letter-spacing: -0.02em;
-      max-width: 14ch;
-      opacity: 0;
-      transform: translateY(30px);
-      animation: fadeUp 0.9s 0.4s forwards;
+    .intro h1 {
+      font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      margin-bottom: 0;
+      line-height: 1.2;
     }
-    .hero h1 em {
-      font-style: normal;
-      color: var(--gold);
-    }
-    .hero-sub {
-      margin-top: 1.5rem;
-      color: var(--muted);
-      font-size: clamp(1rem, 2vw, 1.15rem);
-      max-width: 38ch;
-      opacity: 0;
-      transform: translateY(20px);
-      animation: fadeUp 0.8s 0.6s forwards;
-    }
-    .hero-cta {
-      display: flex;
-      gap: 1rem;
-      margin-top: 2.5rem;
-      flex-wrap: wrap;
-      opacity: 0;
-      transform: translateY(20px);
-      animation: fadeUp 0.8s 0.8s forwards;
-    }
+
     .btn {
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
-      padding: 0.75rem 1.75rem;
+      padding: 0.65rem 1.5rem;
       border-radius: 4px;
       font-size: 0.85rem;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
+      letter-spacing: 0.04em;
       text-decoration: none;
-      font-weight: 600;
-      transition: background 0.25s, color 0.25s, border-color 0.25s, transform 0.2s;
+      font-weight: 500;
+      transition: background 0.25s, color 0.25s, border-color 0.25s;
     }
-    .btn:hover { transform: translateY(-2px); }
     .btn-primary {
       background: var(--gold);
       color: #000;
       border: 1px solid var(--gold);
     }
-    .btn-primary:hover { background: #e0bf84; }
+    .btn-primary:hover { background: #d9ba7c; }
     .btn-ghost {
       background: transparent;
       color: var(--fg);
@@ -175,54 +130,32 @@
     .section {
       max-width: 1100px;
       margin: 0 auto;
-      padding: 6rem 2rem;
-    }
-    .section-label {
-      font-size: 0.7rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 3rem;
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-    }
-    .section-label::after {
-      content: '';
-      flex: 1;
-      height: 1px;
-      background: var(--border);
+      padding: 3.5rem 2rem 5rem;
     }
 
     .about-layout {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 4rem;
+      gap: 3rem 5rem;
       align-items: start;
     }
     @media (max-width: 700px) {
       .about-layout { grid-template-columns: 1fr; gap: 2.5rem; }
     }
 
-    .about-block h2 {
-      font-size: clamp(1.5rem, 3vw, 2rem);
-      font-weight: 600;
-      line-height: 1.3;
-      margin-bottom: 1.25rem;
-      letter-spacing: -0.01em;
-    }
     .about-block p {
-      color: #aaa;
-      font-size: 0.975rem;
+      color: #b0b0b0;
+      font-size: 1rem;
       margin-bottom: 1rem;
-      line-height: 1.75;
+      line-height: 1.8;
     }
+    .about-block p:last-child { margin-bottom: 0; }
     .lang-badge {
       display: inline-block;
       font-size: 0.65rem;
       letter-spacing: 0.15em;
       text-transform: uppercase;
-      padding: 0.2rem 0.6rem;
+      padding: 0.2rem 0.55rem;
       border: 1px solid var(--border);
       border-radius: 3px;
       color: var(--muted);
@@ -233,19 +166,21 @@
     .skills {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.5rem;
-      margin-top: 2rem;
+      gap: 0.45rem;
+      margin-top: 1.75rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
     }
     .skill-pill {
       font-size: 0.75rem;
-      padding: 0.35rem 0.9rem;
+      padding: 0.3rem 0.85rem;
       border-radius: 20px;
       border: 1px solid var(--border);
       color: var(--muted);
-      letter-spacing: 0.04em;
-      transition: border-color 0.25s, color 0.25s;
+      letter-spacing: 0.03em;
+      transition: border-color 0.2s, color 0.2s;
     }
-    .skill-pill:hover { border-color: var(--gold); color: var(--fg); }
+    .skill-pill:hover { border-color: #555; color: var(--fg); }
 
     /* ── DIVIDER ── */
     .divider {
@@ -259,19 +194,12 @@
     .contact-bar {
       max-width: 1100px;
       margin: 0 auto;
-      padding: 5rem 2rem 6rem;
+      padding: 3rem 2rem 5rem;
       display: flex;
       flex-wrap: wrap;
       align-items: center;
-      justify-content: space-between;
-      gap: 2rem;
+      gap: 1rem;
     }
-    .contact-bar h2 {
-      font-size: clamp(1.4rem, 3vw, 2.2rem);
-      font-weight: 600;
-      letter-spacing: -0.01em;
-    }
-    .contact-bar h2 span { color: var(--gold); }
 
     /* ── FOOTER ── */
     footer {
@@ -318,30 +246,22 @@
     </nav>
   </header>
 
-  <!-- HERO -->
-  <section class="hero">
-    <div class="hero-bg"></div>
-    <p class="hero-eyebrow">Senior Video Editor &amp; Motion Designer</p>
-    <h1>Motion<br />que <em>marca</em><br />quem vê.</h1>
-    <p class="hero-sub">Criando experiências visuais de alto impacto para Out of Home, streaming e marcas globais.</p>
-    <div class="hero-cta">
-      <a href="./projetos.html" class="btn btn-primary">Ver Projetos</a>
-      <a href="mailto:gustavohikaruak@gmail.com" class="btn btn-ghost">Entrar em Contato</a>
-    </div>
-  </section>
+  <!-- INTRO -->
+  <div class="intro">
+    <h1>Gustavo Hikaru</h1>
+  </div>
 
   <hr class="divider" />
 
   <!-- ABOUT -->
   <div class="section">
-    <p class="section-label reveal">Sobre mim</p>
     <div class="about-layout">
 
       <div class="about-block reveal reveal-delay-1">
         <span class="lang-badge">PT-BR</span>
-        <h2>Editor de Vídeos Sênior &amp; Motion Designer</h2>
-        <p>Olá! Me chamo Gustavo. Com formação em Design de Animação pela Faculdade Méliès, atuo no mercado de <strong>Out Of Home (OOH)</strong>, criando conteúdos de alto impacto visual.</p>
-        <p>Tenho domínio avançado do pacote Adobe — Premiere Pro, After Effects, Photoshop e Illustrator — e sólida experiência em workflows 3D com <strong>Autodesk Maya</strong>.</p>
+        <p>Olá! Me chamo Gustavo e sou Editor de Vídeos Sênior e Motion Designer.</p>
+        <p>Com formação em Design de Animação pela Faculdade Méliès, hoje atuo no mercado de Out Of Home (OOH), criando conteúdos de alto impacto visual.</p>
+        <p>Tenho domínio avançado do pacote Adobe (Premiere Pro, After Effects, Photoshop e Illustrator) e sólida experiência em workflows 3D com Autodesk Maya.</p>
         <div class="skills">
           <span class="skill-pill">Premiere Pro</span>
           <span class="skill-pill">After Effects</span>
@@ -356,9 +276,9 @@
 
       <div class="about-block reveal reveal-delay-2">
         <span class="lang-badge">ENG</span>
-        <h2>Senior Video Editor &amp; Motion Designer</h2>
-        <p>Hi! I'm Gustavo. With a degree in Animation Design from Méliès College, I work in the <strong>Out of Home (OOH)</strong> industry, creating high-impact visual content for major brands.</p>
-        <p>I have advanced proficiency in the Adobe Suite — Premiere Pro, After Effects, Photoshop, and Illustrator — and solid experience with <strong>3D workflows using Autodesk Maya</strong>.</p>
+        <p>Hi! I'm Gustavo, a Senior Video Editor and Motion Designer.</p>
+        <p>With a degree in Animation Design from Méliès College, I currently work in the Out of Home (OOH) industry, creating high-impact visual content.</p>
+        <p>I have advanced proficiency in the Adobe Suite (Premiere Pro, After Effects, Photoshop, and Illustrator) and solid experience with 3D workflows using Autodesk Maya.</p>
         <div class="skills">
           <span class="skill-pill">Color Grading</span>
           <span class="skill-pill">VFX Compositing</span>
@@ -374,13 +294,10 @@
 
   <hr class="divider" />
 
-  <!-- CONTACT CTA -->
+  <!-- CONTACT -->
   <div class="contact-bar">
-    <h2 class="reveal">Pronto para o próximo<br /><span>projeto?</span></h2>
-    <div class="reveal reveal-delay-1" style="display:flex;gap:1rem;flex-wrap:wrap;">
-      <a href="./projetos.html" class="btn btn-ghost">Ver portfólio completo</a>
-      <a href="mailto:gustavohikaruak@gmail.com" class="btn btn-primary">Falar comigo</a>
-    </div>
+    <a href="./projetos.html" class="btn btn-ghost reveal">Ver projetos</a>
+    <a href="mailto:gustavohikaruak@gmail.com" class="btn btn-primary reveal reveal-delay-1">Entrar em contato</a>
   </div>
 
   <footer>© Gustavo Hikaru — Editor de Vídeo Sênior &amp; Motion Designer</footer>
