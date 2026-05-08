@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Gustavo Hikaru — Portfólio</title>
+  <meta name="description" content="Editor de vídeo sênior e motion designer — portfólio de trabalhos." />
+  <link rel="icon" href="./media/cropped-Logo-Gustavo.jpg" type="image/jpeg" />
+  <style>
+    :root {
+      --bg: #020202;
+      --fg: #f5f5f5;
+      --muted: #a3a3a3;
+      --accent: #e5e5e5;
+      --card: #0f0f0f;
+      --border: #262626;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, Ubuntu, sans-serif;
+      background: var(--bg);
+      color: var(--fg);
+      line-height: 1.6;
+    }
+    a { color: var(--accent); }
+    a:hover { text-decoration: underline; }
+    header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 1rem 1.25rem;
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      background: rgba(2, 2, 2, 0.92);
+      backdrop-filter: blur(8px);
+      z-index: 10;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+    }
+    .brand img {
+      width: 36px;
+      height: 36px;
+      border-radius: 6px;
+      object-fit: cover;
+    }
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      font-size: 0.95rem;
+    }
+    main { max-width: 1100px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+    h1 { font-size: clamp(1.75rem, 4vw, 2.25rem); font-weight: 600; margin: 0 0 0.5rem; }
+    .lead { color: var(--muted); margin: 0 0 2.5rem; max-width: 42rem; }
+    h2 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin: 2.5rem 0 1rem;
+      padding-bottom: 0.35rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .about-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+    }
+    blockquote {
+      margin: 0;
+      padding: 1rem 1.25rem;
+      background: var(--card);
+      border-radius: 8px;
+      border-left: 3px solid var(--border);
+    }
+    blockquote h3 { margin: 0 0 0.75rem; font-size: 1.1rem; }
+    blockquote p { margin: 0 0 0.75rem; color: #d4d4d4; }
+    blockquote p:last-child { margin-bottom: 0; }
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1rem;
+    }
+    details.project {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    details.project summary {
+      cursor: pointer;
+      list-style: none;
+      position: relative;
+    }
+    details.project summary::-webkit-details-marker { display: none; }
+    details.project .thumb-wrap {
+      aspect-ratio: 16 / 9;
+      background: #000;
+      overflow: hidden;
+    }
+    details.project .thumb-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    details.project .title-bar {
+      padding: 0.75rem 1rem;
+      font-weight: 600;
+      font-size: 0.95rem;
+      border-top: 1px solid var(--border);
+    }
+    details.project[open] .title-bar { border-bottom: 1px solid var(--border); }
+    .embed {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background: #000;
+    }
+    .embed iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+    footer {
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.85rem;
+      padding: 2rem 1rem;
+      border-top: 1px solid var(--border);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <img src="./media/cropped-Logo-Gustavo.jpg" width="36" height="36" alt="" />
+      <span>Gustavo Hikaru</span>
+    </div>
+    <nav>
+      <a href="#sobre">Sobre</a>
+      <a href="#projetos">Projetos</a>
+      <a href="https://www.linkedin.com/in/gustavohikaru/" rel="noopener noreferrer" target="_blank">LinkedIn</a>
+      <a href="mailto:gustavohikaruak@gmail.com">E-mail</a>
+    </nav>
+  </header>
+
+  <main>
+    <h1>Motion &amp; edição de vídeo</h1>
+    <p class="lead">Portfólio estático exportado do WordPress — vídeos hospedados na Bunny Stream e no Vimeo.</p>
+
+    <h2 id="sobre">Sobre</h2>
+    <div class="about-grid">
+      <blockquote>
+        <h3>PT-BR</h3>
+        <p>Olá! Me chamo Gustavo e sou Editor de Vídeos Sênior e Motion Designer.</p>
+        <p>Com formação em Design de Animação pela Faculdade Méliès, hoje atuo no mercado de Out Of Home (OOH), criando conteúdos de alto impacto visual.</p>
+        <p>Tenho domínio avançado do pacote Adobe (Premiere Pro, After Effects, Photoshop e Illustrator) e sólida experiência em workflows 3D com Autodesk Maya.</p>
+      </blockquote>
+      <blockquote>
+        <h3>ENG</h3>
+        <p>Hi! I’m Gustavo, a Senior Video Editor and Motion Designer.</p>
+        <p>With a degree in Animation Design from Méliès College, I currently work in the Out of Home (OOH) industry, creating high-impact visual content.</p>
+        <p>I have advanced proficiency in the Adobe Suite (Premiere Pro, After Effects, Photoshop, and Illustrator) and solid experience with 3D workflows using Autodesk Maya.</p>
+      </blockquote>
+    </div>
+
+    <h2 id="projetos">Projetos</h2>
+    <p class="lead" style="margin-bottom:1rem;font-size:0.95rem;">Toque ou clique em um card para expandir e assistir.</p>
+    <div class="projects">
+
+      <details class="project">
+        <summary>
+          <div class="thumb-wrap"><img src="./media/Case-Alien-Earth-16-9.mp4_snapshot_00.02.437.jpg" alt="" loading="lazy" /></div>
+          <div class="title-bar">Alien: Earth</div>
+        </summary>
+        <div class="embed">
+          <iframe title="Alien: Earth" loading="lazy" src="https://iframe.mediadelivery.net/embed/453117/855dad30-09a4-40ba-b9e9-c75ecc4b12b8?autoplay=false&amp;loop=false&amp;muted=false&amp;preload=true&amp;responsive=true" allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;" allowfullscreen></iframe>
+        </div>
+      </details>
+
+      <details class="project">
+        <summary>
+          <div class="thumb-wrap"><img src="./media/Case-Quarteto-Fantastico-Full-Res-16-9.mp4_snapshot_00.07.365.jpg" alt="" loading="lazy" /></div>
+          <div class="title-bar">Fantastic Four</div>
+        </summary>
+        <div class="embed">
+          <iframe title="Fantastic Four" loading="lazy" src="https://iframe.mediadelivery.net/embed/453117/2c6b3135-e0bf-41f2-ad4f-75d41dce995f?autoplay=false&amp;loop=false&amp;muted=false&amp;preload=true&amp;responsive=true" allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;" allowfullscreen></iframe>
+        </div>
+      </details>
+
+      <details class="project">
+        <summary>
+          <div class="thumb-wrap"><img src="./media/Final-de-Ano-VEX-2025-v2.mp4_snapshot_00.22.541.jpg" alt="" loading="lazy" /></div>
+          <div class="title-bar">Final de Ano VEX 2025</div>
+        </summary>
+        <div class="embed">
+          <iframe title="Final de Ano VEX 2025" loading="lazy" src="https://iframe.mediadelivery.net/embed/453117/beea13b1-7982-4f52-8111-c226cf8ec809?autoplay=false&amp;loop=false&amp;muted=false&amp;preload=true&amp;responsive=true" allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;" allowfullscreen></iframe>
+        </div>
+      </details>
+
+      <details class="project">
+        <summary>
+          <div class="thumb-wrap"><img src="./media/Video-Campanha-Senna-v2-2560x1440.mp4_snapshot_00.08.341.jpg" alt="" loading="lazy" /></div>
+          <div class="title-bar">Senna — Netflix</div>
+        </summary>
+        <div class="embed">
+          <iframe title="Senna Netflix" loading="lazy" src="https://iframe.mediadelivery.net/embed/453117/ceef5eb7-2e5f-44a4-828a-a20f50ed3561?autoplay=false&amp;loop=false&amp;muted=false&amp;preload=true&amp;responsive=true" allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;" allowfullscreen></iframe>
+        </div>
+      </details>
+
+      <details class="project">
+        <summary>
+          <div class="thumb-wrap"><img src="./media/Curiosidades-VEX-Thumbnail.jpg" alt="" loading="lazy" /></div>
+          <div class="title-bar">Curiosidades VEX</div>
+        </summary>
+        <div class="embed">
+          <iframe title="Curiosidades VEX" loading="lazy" src="https://iframe.mediadelivery.net/embed/453117/8b9e3bf4-990e-4148-9659-41cb65aa6215?autoplay=false&amp;loop=false&amp;muted=false&amp;preload=true&amp;responsive=true" allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;" allowfullscreen></iframe>
+        </div>
+      </details>
+
+      <details class="project">
+        <summary>
+          <div class="thumb-wrap"><img src="./media/Case-Stranger-Things-Full-Res-16-9.mp4_snapshot_00.00.000.jpg" alt="" loading="lazy" /></div>
+          <div class="title-bar">Stranger Things</div>
+        </summary>
+        <div class="embed">
+          <iframe title="Stranger Things" loading="lazy" src="https://iframe.mediadelivery.net/embed/453117/99c2f61f-1de4-4549-b074-f3b5bf5e030b?autoplay=false&amp;loop=false&amp;muted=false&amp;preload=true&amp;responsive=true" allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;" allowfullscreen></iframe>
+        </div>
+      </details>
+
+      <details class="project">
+        <summary>
+          <div class="thumb-wrap"><img src="./media/Video-Mapa-Carnaval.mp4_snapshot_00.00.000.jpg" alt="" loading="lazy" /></div>
+          <div class="title-bar">Map Video — Carnaval</div>
+        </summary>
+        <div class="embed">
+          <iframe title="Map Video Carnaval" loading="lazy" src="https://iframe.mediadelivery.net/embed/453117/d433cbfa-640a-4ff9-b76a-66ce689cc8f9?autoplay=false&amp;loop=false&amp;muted=false&amp;preload=true&amp;responsive=true" allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;" allowfullscreen></iframe>
+        </div>
+      </details>
+
+      <details class="project">
+        <summary>
+          <div class="thumb-wrap"><img src="./media/Lancamento-Painel-Mairipora-Case.mp4_snapshot_00.01.500.jpg" alt="" loading="lazy" /></div>
+          <div class="title-bar">Lançamento Painel Mairiporã</div>
+        </summary>
+        <div class="embed">
+          <iframe title="Lançamento Painel Mairiporã" loading="lazy" src="https://iframe.mediadelivery.net/embed/453117/933c1e7f-9ab2-442a-8103-8784d813cf74?autoplay=false&amp;loop=false&amp;muted=false&amp;preload=true&amp;responsive=true" allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;" allowfullscreen></iframe>
+        </div>
+      </details>
+
+      <details class="project">
+        <summary>
+          <div class="thumb-wrap"><img src="./media/00-Campanha-Crossmedia-VEX.00_00_04_22.Still001.jpg" alt="" loading="lazy" /></div>
+          <div class="title-bar">Globo — Mania de Você</div>
+        </summary>
+        <div class="embed">
+          <iframe title="Globo Mania de Você" loading="lazy" src="https://iframe.mediadelivery.net/embed/453117/bd682a08-71b7-4f78-85fc-19b8c90136e2?autoplay=false&amp;loop=false&amp;muted=false&amp;preload=true&amp;responsive=true" allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;" allowfullscreen></iframe>
+        </div>
+      </details>
+
+      <details class="project">
+        <summary>
+          <div class="thumb-wrap"><img src="./media/PT-BR-VEX-Fanta.mp4_snapshot_00.02.197.jpg" alt="" loading="lazy" /></div>
+          <div class="title-bar">Fanta</div>
+        </summary>
+        <div class="embed">
+          <iframe title="Fanta" loading="lazy" src="https://iframe.mediadelivery.net/embed/453117/a961c235-faf3-4c7e-8404-f5a9128cfd71?autoplay=false&amp;loop=false&amp;muted=false&amp;preload=true&amp;responsive=true" allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;" allowfullscreen></iframe>
+        </div>
+      </details>
+
+      <details class="project">
+        <summary>
+          <div class="thumb-wrap"><img src="./media/Campanha-Summer-Cheetos-2560x1440.mp4_snapshot_00.18.201.jpg" alt="" loading="lazy" /></div>
+          <div class="title-bar">Cheetos 2025</div>
+        </summary>
+        <div class="embed">
+          <iframe title="Cheetos 2025" loading="lazy" src="https://iframe.mediadelivery.net/embed/453117/613e059b-0c15-411c-ae1f-8cac439ebfab?autoplay=false&amp;loop=false&amp;muted=false&amp;preload=true&amp;responsive=true" allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;" allowfullscreen></iframe>
+        </div>
+      </details>
+
+      <details class="project">
+        <summary>
+          <div class="thumb-wrap"><img src="./media/Case-Smurfs-16-9.mp4_snapshot_00.03.747.jpg" alt="" loading="lazy" /></div>
+          <div class="title-bar">Smurfs</div>
+        </summary>
+        <div class="embed">
+          <iframe title="Smurfs" loading="lazy" src="https://iframe.mediadelivery.net/embed/453117/4aecafd3-d3ea-42b3-af4e-ea1f22d506e6?autoplay=false&amp;loop=false&amp;muted=false&amp;preload=true&amp;responsive=true" allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;" allowfullscreen></iframe>
+        </div>
+      </details>
+
+      <details class="project">
+        <summary>
+          <div class="thumb-wrap"><img src="./media/Campanha-Netflix-Round-6-S03.mp4_snapshot_00.27.866.jpg" alt="" loading="lazy" /></div>
+          <div class="title-bar">Round 6</div>
+        </summary>
+        <div class="embed">
+          <iframe title="Round 6" loading="lazy" src="https://iframe.mediadelivery.net/embed/453117/c6bdd514-29ff-42d8-9a8e-a719e8bbbe60?autoplay=false&amp;loop=false&amp;muted=false&amp;preload=true&amp;responsive=true" allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;" allowfullscreen></iframe>
+        </div>
+      </details>
+
+      <details class="project">
+        <summary>
+          <div class="thumb-wrap"><img src="./media/LIVEX-Feed-Full-Quality.mp4_snapshot_00.06.960.jpg" alt="" loading="lazy" /></div>
+          <div class="title-bar">LIVEX</div>
+        </summary>
+        <div class="embed">
+          <iframe title="LIVEX" loading="lazy" src="https://iframe.mediadelivery.net/embed/453117/db6577bd-8c12-467c-90f4-7ad72a64c023?autoplay=false&amp;loop=false&amp;muted=false&amp;preload=true&amp;responsive=true" allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;" allowfullscreen></iframe>
+        </div>
+      </details>
+
+      <details class="project">
+        <summary>
+          <div class="thumb-wrap"><img src="./media/Case-Portal-Sao-Paulo-Modif.mp4_snapshot_00.02.171.jpg" alt="" loading="lazy" /></div>
+          <div class="title-bar">Portal São Paulo</div>
+        </summary>
+        <div class="embed">
+          <iframe title="Portal São Paulo" loading="lazy" src="https://iframe.mediadelivery.net/embed/453117/6372f67a-aaa7-4434-bd37-b2911e552e56?autoplay=false&amp;loop=false&amp;muted=false&amp;preload=true&amp;responsive=true" allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;" allowfullscreen></iframe>
+        </div>
+      </details>
+
+      <details class="project">
+        <summary>
+          <div class="thumb-wrap"><img src="./media/Thumb-Exterminador.jpg" alt="" loading="lazy" /></div>
+          <div class="title-bar">3D Animated Short Film — Exterminador (Vimeo)</div>
+        </summary>
+        <div class="embed">
+          <iframe title="Exterminador" loading="lazy" src="https://player.vimeo.com/video/715216060?title=1&amp;byline=1&amp;portrait=0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+        </div>
+      </details>
+
+    </div>
+  </main>
+
+  <footer>© Gustavo Hikaru — conteúdo migrado do backup WordPress para HTML estático.</footer>
+</body>
+</html>
